@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&display=swap');
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo{
+    color:#33ffcc;
+    text-transform: uppercase;
+    cursor: pointer;
+
+}
+
+.content{
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #336600;
+}
+
+.content video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.text{
+    position: relative;
+    z-index: 10;
+}
+
+.text h2{
+    font-size: 60px;
+    font-weight: 700;
+    color: #ffccff;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+.text h3{
+    font-size: 140px;
+    font-weight: 700;
+    color: #ffccff;
+    line-height: 1em;
+    text-transform: uppercase;
+
+}
+.text p {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 20px 0;
+    color: #ff9933;
+    max-height: 700px;
+
+}
+.text a{
+    display: inline-block;
+    font-size: 1em;
+    background: cornflowerblue;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+.text a:hover{
+    letter-spacing: 6px;
+    background: #9966ff;
+}
