@@ -1,6 +1,8 @@
 
 package com.tienda.controller;
+import com.tienda.entity.Pais;
 import com.tienda.entity.Persona;
+import com.tienda.service.IPaisService;
 import com.tienda.service.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,9 @@ public class PersonasController {
     @Autowired
     private IPersonaService personaService;
      
- 
+   @Autowired
+    private IPaisService paisService;
+   
      @GetMapping("/persona")
     public String index(Model model){
     List<Persona> listaPersonas=personaService.getAllPerson();
@@ -26,18 +30,28 @@ public class PersonasController {
     model.addAttribute("personas",listaPersonas);
     return "personas";
     }
+     
      @GetMapping("/personasN")
     public String crearPersona(Model model){
-    List<Persona> listaPersonas=personaService.getAllPerson();
-    model.addAttribute("persona", new Persona());
-    //personaService.savePerson(persona);
-    return "crear";
+        List<Pais> listaPais = paisService.listCountry();
+        model.addAttribute("persona", new Persona());
+        model.addAttribute("paises", listaPais);
+        return "crear";
     }
     
       @GetMapping("/save")
     public String guardarPersona(@ModelAttribute Persona persona){
     personaService.savePerson(persona);
     return "redirect:/persona";
+    }
+    
+        @GetMapping("/editarPersona/{id}")
+    public String editarPersona(@PathVariable("id") Long idPersona, Model model){
+        Persona persona = personaService.getPersonById(idPersona);
+        List<Pais> listaPais = paisService.listCountry();
+        model.addAttribute("persona", persona);
+        model.addAttribute("paises", listaPais);
+        return "crear";
     }
     
      @GetMapping("/delete/{id}")

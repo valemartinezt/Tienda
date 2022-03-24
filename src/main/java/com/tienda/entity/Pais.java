@@ -33,5 +33,10 @@ public class Pais implements Serializable {
         this.pais = pais;
     }
 
+     @Override
+    public String toString() {
+        return "Pais{" + "id=" + id + ", pais=" + pais + '}';
+    }
+    
 }
 
