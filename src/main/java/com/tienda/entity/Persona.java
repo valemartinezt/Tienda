@@ -1,6 +1,9 @@
 package com.tienda.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "personas")
@@ -24,15 +25,53 @@ public class Persona implements Serializable {
     private String telefono;
     private String email;
 
+    private String password;
+    private int active;
+    private String roles = "";
+    private String permissions = "";
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+    
+    
     @ManyToOne
     @JoinColumn(name = "paises_id")
 
     private Pais pais;
-    
-    public Persona(){
-        
+
+    public Persona() {
+
     }
-    
+
     public Persona(long id, String nombre, String apellido1, String apellido2, String telefono, String email, Pais pais) {
         this.id = id;
         this.nombre = nombre;
@@ -43,7 +82,7 @@ public class Persona implements Serializable {
         this.pais = pais;
     }
 
-    public Persona(Persona persona){
+    public Persona(Persona persona) {
         this.id = persona.id;
         this.nombre = persona.nombre;
         this.apellido1 = persona.apellido1;
@@ -51,7 +90,7 @@ public class Persona implements Serializable {
         this.telefono = persona.telefono;
         this.email = persona.email;
         this.pais = persona.getPais();
-        
+
     }
 
     public long getId() {
@@ -110,6 +149,19 @@ public class Persona implements Serializable {
         this.pais = pais;
     }
     
+    public List<String> getRoleList() {
+if (this.roles.length() > 0) {
+return Arrays.asList(this.roles.split(","));
+}
+return new ArrayList<>();
+}
 
-  
+ public List<String> getPermissionList() {
+if (this.permissions.length() > 0) {
+return Arrays.asList(this.permissions.split(","));
+}
+return new ArrayList<>();
+}
+    
+
 }
